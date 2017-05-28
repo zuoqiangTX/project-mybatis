@@ -1,4 +1,5 @@
 import com.zuoqiang.dao.UserDao;
+import com.zuoqiang.entity.Article;
 import com.zuoqiang.entity.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -86,6 +87,21 @@ public class UserDaoTest {
             }
     }
     @Test
+    public void resultUserArticleList(){
+        SqlSession sqlSession = getSessionFactory().openSession();
+        try {
+            UserDao userMapper = sqlSession.getMapper(UserDao.class);
+            int id=1;
+            List<Article> articleList=userMapper.resultUserArticleList(id);
+            for (Article article : articleList) {
+                System.out.println(article.getTitle());
+            }
+        } finally {
+            sqlSession.close();
+
+        }
+    }
+ //   @Test
     public void deleteUser(){
         SqlSession sqlSession = getSessionFactory().openSession();
         try {

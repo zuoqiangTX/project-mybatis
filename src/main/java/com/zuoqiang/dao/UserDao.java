@@ -1,5 +1,6 @@
 package com.zuoqiang.dao;
 
+import com.zuoqiang.entity.Article;
 import com.zuoqiang.entity.User;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public interface UserDao {
     public void UpdateUser(User user);
 
     public void deleteUser(String name);
+
+    public  List<Article> resultUserArticleList(int id);
 
     
 }

@@ -21,6 +21,20 @@
         FROM USER U
         WHERE NAME LIKE concat("%",#{NAME},'%')
     </select>
+    <!--一对多查询，UserL联合文章进行查询-->
+    <resultMap id="Articlelist" type="Article">
+        <id property="id" column="aid"></id>
+        <result property="title" column="title"></result>
+        <result property="content" column="title"></result>
+        <association property="user" javaType="User">
+            <id property="id" column="id"></id>
+            <result property="name" column="name"></result>
+            <result property="age" column="age"></result>
+        </association>
+    </resultMap>
+    <select id="resultUserArticleList" parameterType="int" resultMap="Articlelist">
+  select u.id,u.Name, u.age, a.id aid,a.title,a.content from user u,article a  where u.id = a.userid and u.id = #{id}
+    </select>
     <!--&lt;!&ndash;查询单个&ndash;&gt;-->
     <!--<select id="findById" parameterType="int" resultType="User" >-->
         <!--SELECT * FROM User WHERE id=#{id}-->
