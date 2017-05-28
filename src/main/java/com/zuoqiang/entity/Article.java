@@ -11,5 +11,8 @@ public class Article {
     public Article(){
 
     }
+    public Article(int id,User user,String title,String content){
+       this.id=id;
+    }
 
 }
