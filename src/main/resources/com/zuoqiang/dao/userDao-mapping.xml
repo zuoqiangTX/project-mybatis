@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zuoqiang.dao.UserDao" >
+    <resultMap id="UserList" type="User">
+        <id property="id" column="u_id"></id>
+        <result property="name" column="u_name"></result>
+        <result property="password" column="u_password"></result>
+        <result property="age" column="u_age"></result>
+        <result property="deleteFlag" column="u_deleteFlag"></result>
+    </resultMap>
+    <!--返回List的select语句，注意resultMap是前面定义的-->
+    <select parameterType="String" id="findByName" resultMap="UserList">
+        SELECT
+        U.ID AS 'u_id',
+        U.NAME as 'u_name',
+        U.PASSWORD as 'u_password',
+        U.age as 'u_age',
+        u.deleteFlag as 'u_deleteFlag'
+        FROM USER U
+        WHERE NAME LIKE concat("%",#{NAME},'%')
+    </select>
+    <!--&lt;!&ndash;查询单个&ndash;&gt;-->
+    <!--<select id="findById" parameterType="int" resultType="User" >-->
+        <!--SELECT * FROM User WHERE id=#{id}-->
+    <!--</select>-->
+    <!--&lt;!&ndash;查询多个&ndash;&gt;-->
+    <!--<select id="findAllUsers" resultType="User">-->
+        <!--SELECT * FROM USER-->
+    <!--</select>-->
+    <!--其中id和parameterType和接口方法里面inserUser定义的一样.#{name}表示引用User中的属性，对大小敏感。-->
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO USER(NAME,password,age,deleteFlag) VALUE (#{name},#{password},#{age},#{deleteFlag})
+    </insert>
+    <!--更新-->
+    <update id="UpdateUser" parameterType="User">
+        UPDATE USER  SET NAME =#{name},password=#{password},age=#{password} where id=#{id}
+    </update>
+    <!---->
+    <delete id="deleteUser" parameterType="String">
+        DELETE FROM user where NAME=#{NAME}
+    </delete>
+
+</mapper>
