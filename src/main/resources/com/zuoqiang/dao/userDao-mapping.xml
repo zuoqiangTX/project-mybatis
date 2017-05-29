@@ -35,14 +35,14 @@
     <select id="resultUserArticleList" parameterType="int" resultMap="Articlelist">
   select u.id,u.Name, u.age, a.id aid,a.title,a.content from user u,article a  where u.id = a.userid and u.id = #{id}
     </select>
-    <!--&lt;!&ndash;查询单个&ndash;&gt;-->
-    <!--<select id="findById" parameterType="int" resultType="User" >-->
-        <!--SELECT * FROM User WHERE id=#{id}-->
-    <!--</select>-->
-    <!--&lt;!&ndash;查询多个&ndash;&gt;-->
-    <!--<select id="findAllUsers" resultType="User">-->
-        <!--SELECT * FROM USER-->
-    <!--</select>-->
+    <!--查询单个-->
+    <select id="findById" parameterType="int" resultType="User" >
+        SELECT * FROM User WHERE id=#{id}
+    </select>
+    <!--查询多个-->
+    <select id="findAllUsers" resultType="User">
+        SELECT * FROM USER
+    </select>
     <!--其中id和parameterType和接口方法里面inserUser定义的一样.#{name}表示引用User中的属性，对大小敏感。-->
     <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO USER(NAME,password,age,deleteFlag) VALUE (#{name},#{password},#{age},#{deleteFlag})

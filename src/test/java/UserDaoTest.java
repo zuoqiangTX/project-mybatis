@@ -16,7 +16,7 @@ import java.util.List;
  * Created by ZUO on 2017/5/28.
  */
 public class UserDaoTest {
-//    @Test
+    @Test
     public void findByName(){
         SqlSession sqlSession = getSessionFactory().openSession();
         try {
@@ -30,7 +30,7 @@ public class UserDaoTest {
 
         }
     }
-//    @Test
+    @Test
     public void findUserById() {
         SqlSession sqlSession = getSessionFactory().openSession();
         UserDao userMapper = sqlSession.getMapper(UserDao.class);
@@ -41,7 +41,7 @@ public class UserDaoTest {
         Assert.assertNotNull("no data", user);
     }
 
-//    @Test
+    @Test
     public void findAll(){
         SqlSession sqlSession=getSessionFactory().openSession();
         UserDao userDao=sqlSession.getMapper(UserDao.class);
@@ -49,7 +49,7 @@ public class UserDaoTest {
         for (User u : user) {
             System.out.println(u.getName());
         }
-        Assert.assertNotEquals(3, user.size());
+        Assert.assertNotEquals(5, user.size());
     }
 
 //    @Test
