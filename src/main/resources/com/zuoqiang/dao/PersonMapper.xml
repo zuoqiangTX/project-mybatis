@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zuoqiang.dao.PersonMapper" >  <!---在Mapper中我们就不用每次配置都写类的全名了，但是有一个例外，那就是namespace。-->
+    <resultMap id="PersonMapper" type="Person">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="sex" column="sex"></result>
+        <result property="age" column="age"></result>
+        <association property="card" column="card_id" javaType="Card" select="com.zuoqiang.dao.CardMapper.selectCardById">
+            <!--column属性代表把card_id传给 后面的select语句查询，结果放入propetry中去-->
+        </association>
+    </resultMap>
+    <select id="selectPersonById" parameterType="int" resultMap="PersonMapper">
+        SELECT  * FROM tb_person where id=#{id}
+    </select>
+
+</mapper>
