@@ -9,6 +9,9 @@
     <!-- 指定Mybatis使用log4j -->
     <settings>
         <setting name="logImpl" value="LOG4J"/>
+        <!-- 要使延迟加载生效必须配置下面两个属性 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
     <!--使用别名，在接口的映射文件中就不用写全名了-->
     <!--在Mapper中我们就不用每次配置都写类的全名了，但是有一个例外，那就是namespace。-->
