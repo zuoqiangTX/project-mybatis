@@ -11,6 +11,7 @@
         <setting name="logImpl" value="LOG4J"/>
     </settings>
     <!--使用别名，在接口的映射文件中就不用写全名了-->
+    <!--在Mapper中我们就不用每次配置都写类的全名了，但是有一个例外，那就是namespace。-->
     <typeAliases>
         <package name="com.zuoqiang.entity"></package>
     </typeAliases>
@@ -38,7 +39,7 @@
 
     <!-- 映射文件，mybatis精髓， 后面才会细讲 -->
     <mappers>
-        <mapper resource="./com/zuoqiang/dao/userDao-mapping.xml"/>
+        <package name="com.zuoqiang.dao"></package>
     </mappers>
 
 </configuration>
